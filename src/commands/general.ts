@@ -6,11 +6,10 @@ import {
   PermissionFlagsBits,
   SlashCommandBuilder,
   StringSelectMenuBuilder,
-  type ChatInputCommandInteraction,
-  type Client,
+  type Role,
 } from "discord.js";
-import { requireGuild, requirePermission, BRAND_COLOR } from "../utils";
-import type { Command } from "../types";
+import { requireGuild, requirePermission, BRAND_COLOR } from "../utils.js";
+import type { Command } from "../types.js";
 
 const help: Command = {
   data: new SlashCommandBuilder()
@@ -72,7 +71,7 @@ const userinfo: Command = {
         { name: "ID", value: user.id, inline: true },
         { name: "Cuenta creada", value: `<t:${Math.floor(user.createdTimestamp / 1000)}:F>`, inline: true },
         { name: "Ingreso al servidor", value: member ? `<t:${Math.floor(member.joinedTimestamp! / 1000)}:F>` : "No disponible", inline: false },
-        { name: "Roles", value: member?.roles.cache.filter((role) => role.id !== guild.id).map((role) => `<@&${role.id}>`).join(", ") || "Sin roles", inline: false },
+        { name: "Roles", value: member?.roles.cache.filter((role: Role) => role.id !== guild.id).map((role: Role) => `<@&${role.id}>`).join(", ") || "Sin roles", inline: false },
       );
     await interaction.reply({ embeds: [embed] });
   },
