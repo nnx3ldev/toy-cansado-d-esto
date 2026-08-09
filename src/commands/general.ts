@@ -9,8 +9,8 @@ import {
   type ChatInputCommandInteraction,
   type Client,
 } from "discord.js";
-import { requireGuild, requirePermission, BRAND_COLOR } from "../utils";
-import type { Command } from "../types";
+import { requireGuild, requirePermission, BRAND_COLOR } from "../utils.js";
+import type { Command } from "../types.js";
 
 const help: Command = {
   data: new SlashCommandBuilder()
