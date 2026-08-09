@@ -1,12 +1,6 @@
-import {
-  ActionRowBuilder,
-  ButtonBuilder,
-  ButtonStyle,
-  EmbedBuilder,
-  SlashCommandBuilder,
-} from "discord.js";
-import { checkMinecraftServer, BRAND_COLOR } from "../utils.js";
-import type { Command } from "../types.js";
+import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { BRAND_COLOR, checkMinecraftServer } from "../utils";
+import type { Command } from "../types";
 
 const ip: Command = {
   data: new SlashCommandBuilder()
