@@ -6,13 +6,13 @@ import {
   type Client,
   type TextChannel,
 } from "discord.js";
-import { resetGuildConfig, updateGuildConfig } from "../database.js";
+import { resetGuildConfig, updateGuildConfig } from "../database";
 import {
   formatConfigEmbed,
   requireGuild,
   requirePermission,
-} from "../utils.js";
-import type { Command } from "../types.js";
+} from "../utils";
+import type { Command } from "../types";
 
 const setwelcome: Command = {
   data: new SlashCommandBuilder()
@@ -55,7 +55,11 @@ const setwelcomemsg: Command = {
     const message = interaction.options.getString("message", true);
     await updateGuildConfig(guild.id, { welcomeMessage: message });
     await interaction.reply({
-      content: "✅ Mensaje actualizado.\nVista previa: ${message.replaceAll("{user}", interaction.user.username).replaceAll("{mention}", `<@${interaction.user.id}>`).replaceAll("{server}", guild.name).replaceAll("{memberCount}`, String(guild.memberCount))}`,
+      content: `✅ Mensaje actualizado.\nVista previa: ${message
+        .replaceAll("{user}", interaction.user.username)
+        .replaceAll("{mention}", `<@${interaction.user.id}>`)
+        .replaceAll("{server}", guild.name)
+        .replaceAll("{memberCount}", String(guild.memberCount))}`,
       ephemeral: true,
     });
   },
