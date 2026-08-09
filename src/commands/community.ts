@@ -5,8 +5,8 @@ import {
   EmbedBuilder,
   SlashCommandBuilder,
 } from "discord.js";
-import { checkMinecraftServer, BRAND_COLOR } from "../utils";
-import type { Command } from "../types";
+import { checkMinecraftServer, BRAND_COLOR } from "../utils.js";
+import type { Command } from "../types.js";
 
 const ip: Command = {
   data: new SlashCommandBuilder()
