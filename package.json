@@ -1,8 +1,7 @@
 {
   "name": "churibot",
   "version": "1.0.0",
-  "description": "ChuriBot minimalista y limpio",
-  "main": "index.ts",
+  "type": "module",
   "scripts": {
     "start": "ts-node index.ts"
   },
