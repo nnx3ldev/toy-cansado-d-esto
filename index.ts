@@ -1,6 +1,12 @@
 import { Client, GatewayIntentBits, Collection } from "discord.js";
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
+import "dotenv/config";
+
+// Simulación de __dirname y __filename para entorno ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Extender el cliente para incluir la colección de comandos
 const client = new Client({
@@ -21,11 +27,14 @@ if (fs.existsSync(commandsPath)) {
 
   for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
-    const command = require(filePath);
-    if ("data" in command && "execute" in command) {
-      client.commands.set(command.data.name, command);
-      console.log(`[COMANDO CARGADO]: ${command.data.name}`);
-    }
+    import(filePath).then((command) => {
+      if ("data" in command && "execute" in command) {
+        client.commands.set(command.data.name, command);
+        console.log(`[COMANDO CARGADO]: ${command.data.name}`);
+      }
+    }).catch(err => {
+      console.error(`Error al cargar el comando ${file}:`, err);
+    });
   }
 }
 
