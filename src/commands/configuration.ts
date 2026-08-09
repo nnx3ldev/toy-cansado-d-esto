@@ -2,17 +2,15 @@ import {
   ChannelType,
   PermissionFlagsBits,
   SlashCommandBuilder,
-  type ChatInputCommandInteraction,
-  type Client,
   type TextChannel,
 } from "discord.js";
-import { resetGuildConfig, updateGuildConfig } from "../database";
+import { resetGuildConfig, updateGuildConfig } from "../database.js";
 import {
   formatConfigEmbed,
   requireGuild,
   requirePermission,
-} from "../utils";
-import type { Command } from "../types";
+} from "../utils.js";
+import type { Command } from "../types.js";
 
 const setwelcome: Command = {
   data: new SlashCommandBuilder()
