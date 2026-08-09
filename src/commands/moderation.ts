@@ -9,14 +9,14 @@ import {
   addWarning,
   getWarnings,
   removeWarnings,
-} from "../database";
+} from "../database.js";
 import {
   BRAND_COLOR,
   requireGuild,
   requirePermission,
   sendLog,
-} from "../utils";
-import type { Command } from "../types";
+} from "../utils.js";
+import type { Command } from "../types.js";
 
 async function getTarget(
   interaction: ChatInputCommandInteraction,
