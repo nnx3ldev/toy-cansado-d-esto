@@ -3,20 +3,19 @@ import {
   PermissionFlagsBits,
   SlashCommandBuilder,
   type ChatInputCommandInteraction,
-  type Client,
 } from "discord.js";
 import {
   addWarning,
   getWarnings,
   removeWarnings,
-} from "../database.js";
+} from "../database";
 import {
   BRAND_COLOR,
   requireGuild,
   requirePermission,
   sendLog,
-} from "../utils.js";
-import type { Command } from "../types.js";
+} from "../utils";
+import type { Command } from "../types";
 
 async function getTarget(
   interaction: ChatInputCommandInteraction,
