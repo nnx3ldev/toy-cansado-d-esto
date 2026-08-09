@@ -105,5 +105,14 @@ client.on(Events.GuildMemberAdd, async (member) => {
     }
   }
 });
+import http from "http";
 
+// Servidor básico para satisfacer la verificación de puertos de Render
+const port = process.env.PORT || 10000;
+http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("ChuriBot está activo");
+}).listen(port, () => {
+  console.log(`🌐 Servidor de Keep-Alive escuchando en el puerto ${port}`);
+});
 client.login(process.env.DISCORD_TOKEN);
