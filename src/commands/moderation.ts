@@ -3,20 +3,19 @@ import {
   PermissionFlagsBits,
   SlashCommandBuilder,
   type ChatInputCommandInteraction,
-  type Client,
 } from "discord.js";
 import {
   addWarning,
   getWarnings,
   removeWarnings,
-} from "../database";
+} from "../database.js";
 import {
   BRAND_COLOR,
   requireGuild,
   requirePermission,
   sendLog,
-} from "../utils";
-import type { Command } from "../types";
+} from "../utils.js";
+import type { Command, WarningRecord } from "../types.js";
 
 async function getTarget(
   interaction: ChatInputCommandInteraction,
@@ -219,7 +218,7 @@ const warnings: Command = {
     const description = records.length
       ? records
           .slice(0, 15)
-          .map((warning) => `**#${warning.id}** — ${warning.reason}\n<@${warning.moderatorId}> · <t:${Math.floor(new Date(warning.createdAt).getTime() / 1000)}:R>`)
+          .map((warning: WarningRecord) => `**#${warning.id}** — ${warning.reason}\n<@${warning.moderatorId}> · <t:${Math.floor(new Date(warning.createdAt).getTime() / 1000)}:R>`)
           .join("\n\n")
       : "Este miembro no tiene advertencias.";
     const embed = new EmbedBuilder()
