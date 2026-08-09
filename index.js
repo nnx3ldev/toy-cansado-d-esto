@@ -6,6 +6,7 @@ import { moderationCommands } from "./commands/moderation.js";
 import { getGuildConfig } from "./database.js";
 import http from 'http';
 
+// Servidor HTTP para satisfacer el check de puertos de Render y Updown
 const PORT = process.env.PORT || 3000;
 http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
@@ -113,4 +114,6 @@ client.on(Events.GuildMemberAdd, async (member) => {
       await channel.send(message).catch(console.error);
     }
   }
+}); // <-- Aquí faltaba el cierre del evento GuildMemberAdd
+
 client.login(process.env.DISCORD_TOKEN);
